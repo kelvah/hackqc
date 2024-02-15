@@ -1,2 +1,4 @@
-#root {
+.main-content {
+    max-width: 84em;
+    margin: 3em auto 0;
 }
