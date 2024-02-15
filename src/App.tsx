@@ -57,7 +57,7 @@ function App() {
               <Card.Body>
                 <Topics />
                 <PrimaryButton type="button" onClick={() => goToStep(3)}>
-                  Next
+                  Generate
                 </PrimaryButton>
               </Card.Body>
             </Card>

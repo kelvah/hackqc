@@ -5,7 +5,7 @@ import { Checkbox, FormField, Text } from "@workday/canvas-kit-react";
 const Sources = () => {
   const [selection, setSelection] = useState({
     previousOutcomes: true,
-    workAnniversary: true,
+    workdayEvents: true,
     selfAssessment: true,
     peerReviews: true,
   });
@@ -29,12 +29,12 @@ const Sources = () => {
       </FormField>
       <FormField>
         <Checkbox
-          checked={selection.workAnniversary}
-          label="Work anniversary"
+          checked={selection.workdayEvents}
+          label="Workday events"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setSelection((prev) => ({
               ...prev,
-              workAnniversary: event.target.checked,
+              workdayEvents: event.target.checked,
             }));
           }}
         />
