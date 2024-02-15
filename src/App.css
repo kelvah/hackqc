@@ -3,3 +3,7 @@
     margin: 3em auto 0;
     padding-bottom: 3em;
 }
+
+.line-through {
+    text-decoration: line-through;
+}
