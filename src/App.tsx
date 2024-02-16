@@ -14,9 +14,14 @@ import ExtraTopic from "./components/ExtraTopic.tsx";
 import { useExtraTopic } from "./hooks/useExtraTopic.ts";
 import { useTalkingPoints } from "./hooks/useTalkingPoints.ts";
 import PlainTalkingPoints from "./components/PlainTalkingPoints.tsx";
+import { useAssociateConfig } from "./hooks/useAssociateConfig.ts";
+import { associatesData, periodsData } from "./data.ts";
 
 function App() {
   const [step, setStep] = useState(0);
+
+  const { period, changePeriod, associate, changeAssociate } =
+    useAssociateConfig(periodsData);
 
   const {
     topics,
@@ -58,7 +63,14 @@ function App() {
           <Card className="step step-0">
             <Card.Heading>Associate and date range selection</Card.Heading>
             <Card.Body>
-              <AssociateAndRange />
+              <AssociateAndRange
+                associates={associatesData}
+                onChangeAssociate={changeAssociate}
+                selectedAssociateId={associate}
+                periods={periodsData}
+                onChangePeriod={changePeriod}
+                selectedPeriodId={period}
+              />
               <PrimaryButton type="button" onClick={() => goToStep(1)}>
                 Start
               </PrimaryButton>
@@ -74,7 +86,7 @@ function App() {
                   type="button"
                   onClick={() => {
                     goToStep(2);
-                    loadTopics();
+                    loadTopics(associate, period);
                   }}
                 >
                   Next

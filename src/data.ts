@@ -1,5 +1,43 @@
 import { Topic } from "./types.ts";
 
+const associatesData = [
+  {
+    name: "John Doe",
+    id: "jdoe",
+  },
+  {
+    name: "Jane McArthy",
+    id: "jmcarthy",
+  },
+  {
+    name: "Matteo Mortari",
+    id: "mmortari",
+  },
+  {
+    name: "Mark Rowe",
+    id: "mrowe",
+  },
+];
+
+const periodsData = [
+  {
+    label: "Q4 2023",
+    id: "2023Q4",
+  },
+  {
+    label: "Q3 2023",
+    id: "2023Q3",
+  },
+  {
+    label: "Q2 2023",
+    id: "2023Q2",
+  },
+  {
+    label: "Q1 2023",
+    id: "2023Q1",
+  },
+];
+
 const topicsData: Topic[] = [
   {
     source: "Quarterly perf",
@@ -71,4 +109,4 @@ const talkingPointsData =
   "* Recap Matteo's achievements and areas for growth, and express gratitude for his contributions to the team\n" +
   "* Emphasize the importance of continuous learning and improvement, and encourage Matteo to keep up the good work.";
 
-export { topicsData, talkingPointsData };
+export { topicsData, talkingPointsData, associatesData, periodsData };

@@ -1,60 +1,84 @@
-import { useEffect, useState } from "react";
-import { FormField, Select } from "@workday/canvas-kit-react";
+import React from "react";
+import { FormField, Select, useSelectModel } from "@workday/canvas-kit-react";
 import { Flex } from "@workday/canvas-kit-react/layout";
+import { Associate, Period } from "../types.ts";
 
-const AssociateAndRange = () => {
-  const associatesList = [
-    "Roberto Emanuel",
-    "Matteo Mortari",
-    "Edson Tirelli",
-    "Daniele Zonca",
-  ];
-  const periods = ["Q1 2024", "Q4 2023", "Q3 2023", "Q2 2023", "Q1 2023"];
-  const [associate, setAssociate] = useState("");
-  const [period, setPeriod] = useState(periods[0]);
+interface AssociateAndRangeProps {
+  associates: Associate[];
+  selectedAssociateId: string;
+  periods: Period[];
+  selectedPeriodId: string;
+  onChangeAssociate: (id: string) => void;
+  onChangePeriod: (id: string) => void;
+}
+
+const AssociateAndRange: React.FC<AssociateAndRangeProps> = (props) => {
+  const {
+    associates,
+    selectedAssociateId,
+    periods,
+    selectedPeriodId,
+    onChangeAssociate,
+    onChangePeriod,
+  } = props;
 
   const handleAssociateChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setAssociate(event.target.value);
+    onChangeAssociate(event.target.value);
   };
 
   const handlePeriodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPeriod(event.target.value);
+    onChangePeriod(event.target.value);
   };
 
-  useEffect(() => {
-    console.log(`Selected associate: ${associate}`);
-  }, [associate]);
-  useEffect(() => {
-    console.log(`Selected associate: ${period}`);
-  }, [period]);
+  const associateSelectModel = useSelectModel({
+    items: associates,
+    initialSelectedIds: [selectedAssociateId],
+  });
+
+  const periodSelectModel = useSelectModel({
+    items: periods,
+    initialSelectedIds: [selectedPeriodId],
+  });
 
   return (
     <>
       <Flex flexDirection="column">
-        <Select items={associatesList}>
+        <Select model={associateSelectModel}>
           <FormField label="Associate" required={true}>
-            <Select.Input onChange={handleAssociateChange} />
+            <Select.Input
+              onChange={handleAssociateChange}
+              value={
+                associates.find((item) => item.id === selectedAssociateId)
+                  ?.name ?? ""
+              }
+            />
             <Select.Popper>
               <Select.Card>
                 <Select.List>
                   {(item) => {
-                    return <Select.Item>{item}</Select.Item>;
+                    return <Select.Item>{item.name}</Select.Item>;
                   }}
                 </Select.List>
               </Select.Card>
             </Select.Popper>
           </FormField>
         </Select>
-        <Select items={periods} value={period}>
+        <Select model={periodSelectModel}>
           <FormField label="Period" required={true}>
-            <Select.Input onChange={handlePeriodChange} />
+            <Select.Input
+              onChange={handlePeriodChange}
+              value={
+                periods.find((item) => item.id === selectedPeriodId)?.label ??
+                ""
+              }
+            />
             <Select.Popper>
               <Select.Card>
                 <Select.List>
                   {(item) => {
-                    return <Select.Item>{item}</Select.Item>;
+                    return <Select.Item>{item.label}</Select.Item>;
                   }}
                 </Select.List>
               </Select.Card>
