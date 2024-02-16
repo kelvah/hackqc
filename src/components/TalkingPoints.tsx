@@ -1,7 +1,8 @@
 import { Flex } from "@workday/canvas-kit-react/layout";
-import { LoadingDots, Text } from "@workday/canvas-kit-react";
+import { Text } from "@workday/canvas-kit-react";
 
 import { useEffect, useState } from "react";
+import Loading from "./Loading.tsx";
 
 const TalkingPoints = () => {
   const baseStyles = {
@@ -28,13 +29,7 @@ const TalkingPoints = () => {
   return (
     <section style={{ minHeight: "20em" }}>
       {loading ? (
-        <Flex
-          alignItems={"center"}
-          justifyContent={"center"}
-          style={{ height: "20em" }}
-        >
-          <LoadingDots />
-        </Flex>
+        <Loading height={"20em"} />
       ) : (
         <Flex columnGap="xs">
           <Flex flexDirection="column" rowGap="xxs" flex={1}>

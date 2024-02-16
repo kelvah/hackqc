@@ -8,10 +8,23 @@ import Sources from "./components/Sources.tsx";
 import ExternalSources from "./components/ExternalSources.tsx";
 import Topics from "./components/Topics.tsx";
 import TalkingPoints from "./components/TalkingPoints.tsx";
+import { useTopics } from "./hooks/useTopics.ts";
 import "./App.css";
+import ExtraTopic from "./components/ExtraTopic.tsx";
+import { useExtraTopic } from "./hooks/useExtraTopic.ts";
 
 function App() {
   const [step, setStep] = useState(0);
+
+  const {
+    topics,
+    topicsLoading,
+    setTopicsSelection,
+    topicsSelection,
+    loadTopics,
+  } = useTopics();
+
+  const { extraTopic, changeExtraTopic } = useExtraTopic();
 
   const goToStep = (step: number) => {
     setStep(step);
@@ -45,7 +58,13 @@ function App() {
               <Card.Body>
                 <Sources />
                 <ExternalSources />
-                <PrimaryButton type="button" onClick={() => goToStep(2)}>
+                <PrimaryButton
+                  type="button"
+                  onClick={() => {
+                    goToStep(2);
+                    loadTopics();
+                  }}
+                >
                   Next
                 </PrimaryButton>
               </Card.Body>
@@ -55,10 +74,24 @@ function App() {
             <Card className="step step-2">
               <Card.Heading>Topics</Card.Heading>
               <Card.Body>
-                <Topics />
-                <PrimaryButton type="button" onClick={() => goToStep(3)}>
-                  Generate
-                </PrimaryButton>
+                <Topics
+                  topics={topics}
+                  loading={topicsLoading}
+                  selections={topicsSelection}
+                  setSelections={setTopicsSelection}
+                />
+
+                {!topicsLoading && (
+                  <>
+                    <ExtraTopic
+                      topic={extraTopic}
+                      setExtraTopic={changeExtraTopic}
+                    />
+                    <PrimaryButton type="button" onClick={() => goToStep(3)}>
+                      Generate
+                    </PrimaryButton>
+                  </>
+                )}
               </Card.Body>
             </Card>
           )}
