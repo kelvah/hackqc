@@ -36,6 +36,10 @@ const periodsData = [
     label: "Q1 2023",
     id: "2023Q1",
   },
+  {
+    label: "Q1 2024",
+    id: "2024Q1",
+  },
 ];
 
 const topicsData: Topic[] = [
