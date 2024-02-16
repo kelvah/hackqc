@@ -12,9 +12,9 @@ export const useTopics = () => {
     setTopicsLoading(true);
     const startTime = Date.now();
     Promise.all([
-      api.get(`/dummy/quarterly/${associateId}/${periodId}`),
-      api.get(`/dummy/rewardzone/${associateId}/${periodId}`),
-      api.get(`/dummy/anniversary/${associateId}/${periodId}`),
+      api.get(`/json/quarterly/${associateId}/${periodId}`),
+      api.get(`/json/rewardzone/${associateId}/${periodId}`),
+      api.get(`/json/anniversary/${associateId}/${periodId}`),
     ])
       .then((values) => {
         const topics: Topic[] = [];
