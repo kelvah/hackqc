@@ -30,7 +30,7 @@ function App() {
       <section className="main-content">
         <Heading size="large">Quarterly Connections</Heading>
         <Flex flexDirection="column" rowGap="m">
-          <Card className="step-0">
+          <Card className="step step-0">
             <Card.Heading>Associate and date range selection</Card.Heading>
             <Card.Body>
               <AssociateAndRange />
@@ -40,7 +40,7 @@ function App() {
             </Card.Body>
           </Card>
           {step >= 1 && (
-            <Card className="step-1">
+            <Card className="step step-1">
               <Card.Heading>Sources selection</Card.Heading>
               <Card.Body>
                 <Sources />
@@ -52,7 +52,7 @@ function App() {
             </Card>
           )}
           {step >= 2 && (
-            <Card className="step-2">
+            <Card className="step step-2">
               <Card.Heading>Topics</Card.Heading>
               <Card.Body>
                 <Topics />
@@ -63,7 +63,7 @@ function App() {
             </Card>
           )}
           {step >= 3 && (
-            <Card className="step-3">
+            <Card className="step step-3">
               <Card.Heading>Talking points</Card.Heading>
               <Card.Body>
                 <TalkingPoints />

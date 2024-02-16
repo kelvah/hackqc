@@ -7,3 +7,7 @@
 .line-through {
     text-decoration: line-through;
 }
+
+.step {
+    scroll-margin: 1.5em;
+}
