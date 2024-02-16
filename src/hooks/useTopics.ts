@@ -14,6 +14,7 @@ export const useTopics = () => {
 
   useEffect(() => {
     if (topicsLoading) {
+      const startTime = Date.now();
       Promise.all([
         api.get("/dummy/quarterly/mmortari/2023Q4"),
         api.get("/dummy/rewardzone/mmortari/2023Q4"),
@@ -35,7 +36,15 @@ export const useTopics = () => {
           setTopicsSelection([...Array(topics.length).keys()]);
         })
         .finally(() => {
-          setTopicsLoading(false);
+          const endTime = Date.now();
+          const elapsedTime = endTime - startTime;
+          if (elapsedTime < 3000) {
+            setTimeout(() => {
+              setTopicsLoading(false);
+            }, 3000 - elapsedTime);
+          } else {
+            setTopicsLoading(false);
+          }
         });
     } else {
       document

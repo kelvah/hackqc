@@ -7,11 +7,13 @@ import { Flex } from "@workday/canvas-kit-react/layout";
 import Sources from "./components/Sources.tsx";
 import ExternalSources from "./components/ExternalSources.tsx";
 import Topics from "./components/Topics.tsx";
-import TalkingPoints from "./components/TalkingPoints.tsx";
+// import TalkingPoints from "./components/TalkingPoints.tsx";
 import { useTopics } from "./hooks/useTopics.ts";
 import "./App.css";
 import ExtraTopic from "./components/ExtraTopic.tsx";
 import { useExtraTopic } from "./hooks/useExtraTopic.ts";
+import { useTalkingPoints } from "./hooks/useTalkingPoints.ts";
+import PlainTalkingPoints from "./components/PlainTalkingPoints.tsx";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -25,6 +27,16 @@ function App() {
   } = useTopics();
 
   const { extraTopic, changeExtraTopic } = useExtraTopic();
+
+  const { talkingPoints, loadingTalkingPoints, loadTalkingPoints } =
+    useTalkingPoints();
+
+  const handleLoadTalkingPoints = () => {
+    const topicsList = topics
+      .filter((_topic, index) => topicsSelection.includes(index))
+      .map((item) => item.text);
+    loadTalkingPoints(topicsList);
+  };
 
   const goToStep = (step: number) => {
     setStep(step);
@@ -87,7 +99,13 @@ function App() {
                       topic={extraTopic}
                       setExtraTopic={changeExtraTopic}
                     />
-                    <PrimaryButton type="button" onClick={() => goToStep(3)}>
+                    <PrimaryButton
+                      type="button"
+                      onClick={() => {
+                        goToStep(3);
+                        handleLoadTalkingPoints();
+                      }}
+                    >
                       Generate
                     </PrimaryButton>
                   </>
@@ -99,7 +117,11 @@ function App() {
             <Card className="step step-3">
               <Card.Heading>Talking points</Card.Heading>
               <Card.Body>
-                <TalkingPoints />
+                {/*<TalkingPoints />*/}
+                <PlainTalkingPoints
+                  loading={loadingTalkingPoints}
+                  talkingPoints={talkingPoints}
+                />
               </Card.Body>
             </Card>
           )}
