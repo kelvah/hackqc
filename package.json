@@ -13,6 +13,7 @@
     "@workday/canvas-kit-labs-react": "^10.3.13",
     "@workday/canvas-kit-react": "^10.3.13",
     "@workday/canvas-system-icons-web": "^3.0.19",
+    "axios": "^1.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

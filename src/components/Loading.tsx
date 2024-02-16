@@ -1,3 +1,4 @@
+import React from "react";
 import { LoadingDots } from "@workday/canvas-kit-react";
 import { Flex } from "@workday/canvas-kit-react/layout";
 

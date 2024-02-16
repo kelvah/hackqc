@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Topic } from "../types.ts";
-import { topicsData } from "../data.ts";
+import { api } from "../api.ts";
 
 export const useTopics = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -14,14 +14,29 @@ export const useTopics = () => {
 
   useEffect(() => {
     if (topicsLoading) {
-      const timer = setTimeout(() => {
-        setTopicsLoading(false);
-        setTopics(topicsData);
-        setTopicsSelection([...Array(topicsData.length).keys()]);
-      }, 3000);
-      return () => {
-        clearTimeout(timer);
-      };
+      Promise.all([
+        api.get("/dummy/quarterly/mmortari/2023Q4"),
+        api.get("/dummy/rewardzone/mmortari/2023Q4"),
+        api.get("/dummy/anniversary/mmortari/2023Q4"),
+      ])
+        .then((values) => {
+          const topics: Topic[] = [];
+          values.forEach((value) => {
+            if (value.data && value.data.length > 0) {
+              topics.push(
+                ...value.data.map((item: string) => ({
+                  text: item,
+                  source: "",
+                })),
+              );
+            }
+          });
+          setTopics(topics);
+          setTopicsSelection([...Array(topics.length).keys()]);
+        })
+        .finally(() => {
+          setTopicsLoading(false);
+        });
     } else {
       document
         .querySelector(".step-2")
