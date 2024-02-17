@@ -8,6 +8,7 @@ export const useTalkingPoints = () => {
 
   const payload =
     'You are a manager conducting your quarterly performance review with your associates. Create a conversation plan with a list of talking points based on the associate data. Consolidate the topics and create a single plan with the talking points following the "Crucial Conversations" framework. Keep the talking points succinct and avoid giving conversation examples. Include in the plan a couple suggestions of possible areas for development of the associate. Avoid repeated topics.\n' +
+    'The conversation plan MUST be following the "Crucial conversations" framework. Start your answer with "Here is the suggested conversation plan following the Crucial Conversations framework:"'+
     "Here is the data collected for your associate:\n" +
     "\n";
 
