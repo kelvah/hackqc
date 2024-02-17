@@ -9,10 +9,10 @@ const associatesData = [
     name: "Jane McArthy",
     id: "jmcarthy",
   },
-  {
-    name: "Matteo Mortari",
-    id: "mmortari",
-  },
+  // {
+  //   name: "Matteo Mortari",
+  //   id: "mmortari",
+  // },
   {
     name: "Mark Rowe",
     id: "mrowe",
@@ -21,24 +21,24 @@ const associatesData = [
 
 const periodsData = [
   {
-    label: "Q4 2023",
+    label: "2024 Q1",
+    id: "2024Q1",
+  },
+  {
+    label: "2023 Q4",
     id: "2023Q4",
   },
   {
-    label: "Q3 2023",
+    label: "2023 Q3",
     id: "2023Q3",
   },
   {
-    label: "Q2 2023",
+    label: "2023 Q2",
     id: "2023Q2",
   },
   {
-    label: "Q1 2023",
+    label: "2023 Q1",
     id: "2023Q1",
-  },
-  {
-    label: "Q1 2024",
-    id: "2024Q1",
   },
 ];
 
