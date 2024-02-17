@@ -9,10 +9,10 @@ const associatesData = [
     name: "Jane McArthy",
     id: "jmcarthy",
   },
-  // {
-  //   name: "Matteo Mortari",
-  //   id: "mmortari",
-  // },
+  {
+    name: "Mason Morgan",
+    id: "mmorgan",
+  },
   {
     name: "Mark Rowe",
     id: "mrowe",
